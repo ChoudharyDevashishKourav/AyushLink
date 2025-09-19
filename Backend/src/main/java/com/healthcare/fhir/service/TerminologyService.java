@@ -70,9 +70,9 @@ public class TerminologyService {
         valueSet.setExpansion(expansion);
 
         // Augment with ICD search results if filter is provided
-        if (filter != null && !filter.trim().isEmpty() && contains.size() < count) {
-            augmentWithIcdResults(expansion, filter, count - contains.size());
-        }
+//        if (filter != null && !filter.trim().isEmpty() && contains.size() < count) {
+//            augmentWithIcdResults(expansion, filter, count - contains.size());
+//        }
 
         logger.info("Expanded ValueSet with {} entries for filter: {}", contains.size(), filter);
         return valueSet;

@@ -57,12 +57,14 @@ const ConditionDetails: React.FC<{ condition: any }> = ({ condition }) => {
   const clinicalStatus = condition.clinicalStatus?.coding?.[0]?.code || "-";
   const category = condition.category?.[0]?.coding?.[0]?.code || "-";
   const codeDisplay = condition.code?.coding?.[0]?.display || "-";
+  const codeDisplay_n = condition.code?.coding?.[0]?.code || "-";
   return (
     <div className="bg-blue-700 p-4 rounded-lg shadow-lg mb-4">
       <h3 className="text-xl font-semibold text-blue-100 mb-1">Condition</h3>
       <p><span className="font-semibold">Clinical Status:</span> {clinicalStatus}</p>
       <p><span className="font-semibold">Category:</span> {category}</p>
-      <p><span className="font-semibold">Code:</span> {codeDisplay}</p>
+      <p><span className="font-semibold">Code-Name:</span> {codeDisplay}</p>
+      <p><span className="font-semibold">Code:</span> {codeDisplay_n}</p>
       <p><span className="font-semibold">Onset:</span> {formatDate(condition.onsetDateTime)}</p>
       <p><span className="font-semibold">Recorded Date:</span> {formatDate(condition.recordedDate)}</p>
     </div>
