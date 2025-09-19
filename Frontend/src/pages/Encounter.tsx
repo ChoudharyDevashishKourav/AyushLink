@@ -3,7 +3,7 @@ import { Upload, FileText, ArrowRight, Loader2 } from 'lucide-react';
 import FhirEhrViewer from '../components/FhirEhrViewer';
 
 // Sample EHR data for demo
-const DEMO_EHRx = {
+const DEMO_EHR1 = {
   "resourceType": "Bundle",
   "type": "transaction",
   "entry": [
@@ -20,8 +20,8 @@ const DEMO_EHRx = {
         "name": [
           {
             "use": "official",
-            "family": "Sharma",
-            "given": ["Rajesh", "Kumar"]
+            "family": "Jain",
+            "given": ["Pritam", "Kumar"]
           }
         ],
         "gender": "male",
@@ -123,7 +123,7 @@ const DEMO_EHRx = {
     }
   ]
 };
-const DEMO_EHR = {
+const DEMO_EHR3 = {
   "resourceType": "Bundle",
   "type": "transaction",
   "entry": [
@@ -243,7 +243,7 @@ const DEMO_EHR = {
     }
   ]
 };
-const DEMO_EHR1 = {
+const DEMO_EHR2 = {
   "resourceType": "Bundle",
   "type": "transaction",
   "entry": [
@@ -260,8 +260,8 @@ const DEMO_EHR1 = {
         "name": [
           {
             "use": "official",
-            "family": "Sharma",
-            "given": ["Rajesh", "Kumar"]
+            "family": "Pratap",
+            "given": ["Sanjay", "Singh"]
           }
         ],
         "gender": "male",
@@ -373,8 +373,10 @@ const Encounter = () => {
   const DEMO_TOKEN = localStorage.getItem('JWTS_TOKEN');
 
   // Upload and show EHR
-  const handleUploadDemo = () => {
-    setEhrData(DEMO_EHR);
+  const handleUploadDemo = (n: number) => {
+    if(n === 1) setEhrData(DEMO_EHR3);
+    if(n === 2) setEhrData(DEMO_EHR1);
+    if(n === 3) setEhrData(DEMO_EHR2);
     setError(null);
   };
 
@@ -554,11 +556,25 @@ const Encounter = () => {
                   Load Demo EHR
                 </h2>
                 <button
-                  onClick={handleUploadDemo}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2"
+                  onClick={() => handleUploadDemo(1)}
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 my-2"
                 >
                   <FileText size={18} />
-                  Load Demo EHR Data
+                  Demo EHR Data - 1
+                </button>
+                <button
+                  onClick={() =>handleUploadDemo(2)}
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 my-2"
+                >
+                  <FileText size={18} />
+                  Demo EHR Data - 2
+                </button>
+                <button
+                  onClick={() => handleUploadDemo(3)}
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 my-2"
+                >
+                  <FileText size={18} />
+                  Demo EHR Data - 3
                 </button>
               </div>
             ) : (
