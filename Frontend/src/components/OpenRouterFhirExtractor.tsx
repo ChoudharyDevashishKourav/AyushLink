@@ -256,6 +256,7 @@ const OpenRouterFhirExtractor: React.FC<Props> = ({
     <div className="w-full">
       {loading && (
         <div className="mt-2 h-1 w-full bg-slate-200 rounded">
+          <h2 className="mt-3 inline-flex items-center gap-2 text-lg font-medium text-slate-700 tracking-tight"> Extracting patient details... <span className="inline-block h-2 w-2 rounded-full bg-blue-600 animate-pulse" /> </h2>
           <div
             className="h-1 bg-blue-600 rounded transition-all duration-300"
             style={{ width: `${progress}%` }}

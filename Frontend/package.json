@@ -9,13 +9,14 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.20.1",
+    "@google/genai": "^1.20.0",
     "@tanstack/react-query": "^5.8.0",
     "@tanstack/react-query-devtools": "^5.8.0",
     "clsx": "^2.0.0",
-    "lucide-react": "^0.294.0"
+    "lucide-react": "^0.294.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.20.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.37",

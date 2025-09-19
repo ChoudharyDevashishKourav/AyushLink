@@ -11,6 +11,7 @@ type Props = {
 const MicRecorder: React.FC<Props> = ({ uploadUrl, fieldName = 'file', extraFields = {}, onTranscribed }) => {
   const [isRecording, setIsRecording] = useState(false);
   const [isTranscribing, setisTranscribing] = useState(false);
+  const [TTS, setTTS] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const mediaStreamRef = useRef<MediaStream | null>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
@@ -110,13 +111,10 @@ const MicRecorder: React.FC<Props> = ({ uploadUrl, fieldName = 'file', extraFiel
     // EXPECTATION: backend returns JSON like { transcript: "..." }
     const data = await res.json().catch(() => null);
     const text = data?.transcript || '';
+    setTTS(text);
     if (text && onTranscribed) onTranscribed(text);
     setisTranscribing(false);
 
-    if (!res.ok) {
-      const text = await res.text().catch(() => '');
-      throw new Error(`Upload error ${res.status}: ${text || res.statusText}`);
-    }
   };
 
   return (
@@ -148,6 +146,14 @@ const MicRecorder: React.FC<Props> = ({ uploadUrl, fieldName = 'file', extraFiel
       <div className="text-sm text-slate-600">
         {isTranscribing ? 'Transcribing...' : ''}
       </div>
+        
+        {!!TTS && (
+        <h2 className="mt-3 italic text-lg font-medium text-slate-700 tracking-tight">
+        *{TTS}*
+        </h2>
+        )}
+        
+
 
       {!!error && <div className="text-sm text-red-600">{error}</div>}
     </div>
