@@ -111,7 +111,8 @@ const MicRecorder: React.FC<Props> = ({ uploadUrl, fieldName = 'file', extraFiel
   };
 
   return (
-    <div className="flex flex-col items-center gap-3">
+    <div className=''>   
+    <div className="flex flex-col items-center gap-3 m-5">
       <button
         type="button"
         onClick={toggleRecording}
@@ -127,7 +128,7 @@ const MicRecorder: React.FC<Props> = ({ uploadUrl, fieldName = 'file', extraFiel
           <Mic/>
         ) : (
           // Stop-circle icon
-          <Discq />
+          <Disc />
         )}
       </button>
 
@@ -136,6 +137,7 @@ const MicRecorder: React.FC<Props> = ({ uploadUrl, fieldName = 'file', extraFiel
       </div>
 
       {!!error && <div className="text-sm text-red-600">{error}</div>}
+    </div>
     </div>
   );
 };

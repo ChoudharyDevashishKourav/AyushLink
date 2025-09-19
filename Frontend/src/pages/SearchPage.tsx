@@ -89,7 +89,7 @@ export const SearchPage: React.FC = () => {
         )}
 
         {/* Patient ID Input */}
-        <div className="bg-white rounded-xl border border-gray-200 p-6 mb-6 shadow-sm">
+        {/* <div className="bg-white rounded-xl border border-gray-200 p-6 mb-6 shadow-sm">
           <div className="flex items-center space-x-3 mb-4">
             <User className="w-5 h-5 text-gray-400" />
             <h2 className="font-medium text-gray-900">Patient Information</h2>
@@ -117,7 +117,7 @@ export const SearchPage: React.FC = () => {
               ))}
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Search */}
         <div className="bg-white rounded-xl border border-gray-200 p-6 mb-6 shadow-sm">

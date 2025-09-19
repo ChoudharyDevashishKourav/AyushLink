@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Search, FileText, Info, Activity, LogOut, LogOutIcon } from 'lucide-react';
+import { Search, FileText, Info, Activity, LogOut, LogOutIcon, Mic, Mic2 } from 'lucide-react';
 import LogoutButton from './LogoutButton'
+import logo from "../assets/LOGO.png"
 interface LayoutProps {
   children: React.ReactNode;
 }
@@ -30,11 +31,21 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       description: 'View saved conditions'
     },
     {
+      name: 'Speak',
+      href: '/mic',
+      icon: Mic,
+      description: 'Generate EHR with AI',
+      
+    },
+    {
       name: 'About',
       href: '/about',
       icon: Info,
       description: 'System information'
     }
+    
+    
+  
   ];
 
   return (
@@ -45,12 +56,17 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                  <Activity className="w-5 h-5 text-white" />
-                </div>
+                <img 
+            src={logo} 
+            alt="App Logo" 
+            className="h-20 w-20 mx-auto" // adjust size as needed
+          />
+                <div className="w-1 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                  
+                </div> 
                 <div>
                   <h1 className="text-xl font-semibold text-gray-900">
-                    FHIR Terminology
+                    AyushLink
                   </h1>
                   <p className="text-xs text-gray-500">NAMASTE ↔ ICD-11</p>
                 </div>
@@ -99,7 +115,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       <footer className="bg-white border-t border-gray-200 mt-auto">
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="text-center text-sm text-gray-500">
-            <p>FHIR Terminology Service • Built for FHIR Compliance</p>
+            <p>AyushLink • Built for FHIR Compliance</p>
             <p className="mt-1">Bridging NAMASTE and ICD-11 for Indian Healthcare</p>
           </div>
         </div>
