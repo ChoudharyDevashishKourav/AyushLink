@@ -32,7 +32,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
     },
     {
       name: 'Speak',
-      href: '/mic',
+      href: '/speak',
       icon: Mic,
       description: 'Generate EHR with AI',
       

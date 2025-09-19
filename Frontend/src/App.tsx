@@ -11,6 +11,7 @@ import AuthManager from "./components/AuthManager";
 import MicRecorder from "./components/MicRecorder"
 import HomePage from "./components/HomePage"
 import FhirEhrViewer from './components/FhirEhrViewer';
+import Speak from './pages/Speak';
 // Create a client
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -154,6 +155,8 @@ function App() {
     }
   ]
 }
+  const transcript =
+    'Patient Ramesh, male, 42 years. Complains of abdominal pain and acidity since 3 days. No fever. Phone 9876543210. Started yesterday evening, worsened at night.';
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -169,13 +172,13 @@ function App() {
           <Layout>
             <Routes>
               {/* <Route path="/home" element={<HomePage />} /> */}
+              <Route path="*" element={<SearchPage />} /> {/* Default to home */}
               <Route path="/home" element={<HomePage />} />
               <Route path="/conditions" element={<ConditionsPage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/ehr" element={<FhirEhrViewer bundle={ehr} />} />
-              <Route path="/mic" element={<MicRecorder uploadUrl="transcribe" fieldName="file" 
-                                                      extraFields={{speakerId: '12345' }}/>} />
-              <Route path="*" element={<SearchPage />} /> {/* Default to home */}
+              <Route path="/speak" element={<Speak/>} />
+              
             </Routes>
           </Layout>
         )}

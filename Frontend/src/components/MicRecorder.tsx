@@ -2,13 +2,15 @@ import { Disc, Mic } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
 
 type Props = {
-  uploadUrl: string; // e.g. "/api/upload" in Spring Boot
-  fieldName?: string; // multipart field name, default "file"
-  extraFields?: Record<string, string>; // optional extra form fields
+  uploadUrl: string;
+  fieldName?: string;
+  extraFields?: Record<string, string>;
+  onTranscribed?: (text: string) => void; // NEW
 };
 
-const MicRecorder: React.FC<Props> = ({ uploadUrl, fieldName = 'file', extraFields = {} }) => {
+const MicRecorder: React.FC<Props> = ({ uploadUrl, fieldName = 'file', extraFields = {}, onTranscribed }) => {
   const [isRecording, setIsRecording] = useState(false);
+  const [isTranscribing, setisTranscribing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const mediaStreamRef = useRef<MediaStream | null>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
@@ -93,16 +95,23 @@ const MicRecorder: React.FC<Props> = ({ uploadUrl, fieldName = 'file', extraFiel
     const form = new FormData();
     form.append(fieldName, file);
     Object.entries(extraFields || {}).forEach(([k, v]) => form.append(k, v));
-
+    setisTranscribing(true);
     const res = await fetch(`http://localhost:8080/api/audio/${uploadUrl}`, {
       method: 'POST',
       body: form,
-      headers: {
-        
-        'Authorization': `Bearer ${token}`,
-      }
-      // Do NOT set Content-Type; browser sets multipart boundary automatically
+      headers: { 'Authorization': `Bearer ${localStorage.getItem('JWTS_TOKEN') || ''}` }
     });
+
+    if (!res.ok) {
+      const text = await res.text().catch(() => '');
+      throw new Error(`Upload error ${res.status}: ${text || res.statusText}`);
+    }
+
+    // EXPECTATION: backend returns JSON like { transcript: "..." }
+    const data = await res.json().catch(() => null);
+    const text = data?.transcript || '';
+    if (text && onTranscribed) onTranscribed(text);
+    setisTranscribing(false);
 
     if (!res.ok) {
       const text = await res.text().catch(() => '');
@@ -134,6 +143,10 @@ const MicRecorder: React.FC<Props> = ({ uploadUrl, fieldName = 'file', extraFiel
 
       <div className="text-sm text-slate-600">
         {isRecording ? 'Recording...' : 'Tap to record'}
+      </div>
+
+      <div className="text-sm text-slate-600">
+        {isTranscribing ? 'Transcribing...' : ''}
       </div>
 
       {!!error && <div className="text-sm text-red-600">{error}</div>}
