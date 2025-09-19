@@ -156,7 +156,7 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
                       ? 'bg-blue-50 border-l-4 border-blue-500' 
                       : 'hover:bg-gray-50'
                   }`}
-                  onClick ={() => handleSelect(item)}
+                  onMouseDown ={() => handleSelect(item)}
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex-1 min-w-0">
