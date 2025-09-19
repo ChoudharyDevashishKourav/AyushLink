@@ -1,7 +1,16 @@
 server:
   port: 8080
-
 spring:
+  ai:
+    openai:
+      api-key: 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
+      base-url: https://openrouter.ai/api/v1
+      chat:
+        options:
+          model: openai/gpt-oss-120b:free
+          temperature: 0
+          max-tokens: 12000
+
   application:
     name: fhir-terminology-service
   sql:

@@ -8,6 +8,7 @@ import { SearchPage } from './pages/SearchPage';
 import { ConditionsPage } from './pages/ConditionsPage';
 import { AboutPage } from './pages/AboutPage';
 import AuthManager from "./components/AuthManager";
+import MicRecorder from "./components/MicRecorder"
 import HomePage from "./components/HomePage"
 // Create a client
 const queryClient = new QueryClient({
@@ -50,6 +51,8 @@ function App() {
               <Route path="/home" element={<HomePage />} />
               <Route path="/conditions" element={<ConditionsPage />} />
               <Route path="/about" element={<AboutPage />} />
+              <Route path="/mic" element={<MicRecorder uploadUrl="transcribe" fieldName="file" 
+                                                      extraFields={{speakerId: '12345' }}/>} />
               <Route path="*" element={<SearchPage />} /> {/* Default to home */}
             </Routes>
           </Layout>
