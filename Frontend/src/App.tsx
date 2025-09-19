@@ -12,6 +12,7 @@ import MicRecorder from "./components/MicRecorder"
 import HomePage from "./components/HomePage"
 import FhirEhrViewer from './components/FhirEhrViewer';
 import Speak from './pages/Speak';
+import Encounter from './pages/Encounter';
 // Create a client
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -178,6 +179,7 @@ function App() {
               <Route path="/about" element={<AboutPage />} />
               <Route path="/ehr" element={<FhirEhrViewer bundle={ehr} />} />
               <Route path="/speak" element={<Speak/>} />
+              <Route path="/encounter" element={<Encounter/>} />
               
             </Routes>
           </Layout>

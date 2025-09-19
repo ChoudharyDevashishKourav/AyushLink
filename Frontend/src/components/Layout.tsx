@@ -25,10 +25,10 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       description: 'Search medical terminology'
     },
     {
-      name: 'Conditions',
-      href: '/conditions',
+      name: 'Encounter',
+      href: '/encounter',
       icon: FileText,
-      description: 'View saved conditions'
+      description: 'Encounter Upload For Dual Coding'
     },
     {
       name: 'Speak',
