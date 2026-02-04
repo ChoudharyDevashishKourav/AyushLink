@@ -100,7 +100,7 @@ const MicRecorder: React.FC<Props> = ({ uploadUrl, fieldName = 'file', extraFiel
     const res = await fetch(`http://localhost:8080/api/audio/${uploadUrl}`, {
       method: 'POST',
       body: form,
-      headers: { 'Authorization': `Bearer ${localStorage.getItem('JWTS_TOKEN') || ''}` }
+     //headers: { 'Authorization': `Bearer ${localStorage.getItem('JWTS_TOKEN') || ''}` }
     });
 
     if (!res.ok) {
@@ -142,7 +142,6 @@ const MicRecorder: React.FC<Props> = ({ uploadUrl, fieldName = 'file', extraFiel
       <div className="text-sm text-slate-600">
         {isRecording ? 'Recording...' : 'Tap to record'}
       </div>
-
       <div className="text-sm text-slate-600">
         {isTranscribing ? 'Transcribing...' : ''}
       </div>

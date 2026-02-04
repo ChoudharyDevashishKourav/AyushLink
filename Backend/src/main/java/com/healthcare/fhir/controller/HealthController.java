@@ -7,7 +7,6 @@
 // HealthController.java
 package com.healthcare.fhir.controller;
 
-import com.healthcare.fhir.service.IcdSyncService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -26,8 +25,7 @@ public class HealthController {
     @Value("${namaste.system-uri}")
     private String namasteSystemUri;
 
-    @Autowired
-    private IcdSyncService icdSyncService;
+
 
     @GetMapping("/about")
     public ResponseEntity<Map<String, Object>> about() {
@@ -38,7 +36,6 @@ public class HealthController {
             "version", namasteVersion,
             "systemUri", namasteSystemUri
         ));
-        about.put("icd", icdSyncService.getSystemInfo());
         about.put("timestamp", System.currentTimeMillis());
         
         return ResponseEntity.ok(about);
